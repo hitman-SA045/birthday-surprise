@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#000308" />
+<meta name="description" content="A tiny birthday surprise." />
+<title>Happy Birthday ðŸ’™</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%92%99%3C/text%3E%3C/svg%3E" />
+</head>
+<body>
+
+<!-- ambient background layers -->
+<div class="bg" aria-hidden="true">
+  <div class="bg-aurora"></div>
+  <div class="bg-infinity"></div>
+  <div class="bg-stars" id="stars"></div>
+  <div class="bg-grain"></div>
+</div>
+
+<main class="stage" id="stage">
+
+  <!-- ============ 1. OPENING ============ -->
+  <section class="section section--hero" id="opening">
+    <div class="wrap wrap--center">
+      <h1 class="hero-title" data-txt="openTitle"></h1>
+      <p class="lede" data-txt="openLede"></p>
+      <button class="btn btn--primary" id="openBtn" type="button" data-txt="openBtn"></button>
+    </div>
+  </section>
+
+  <!-- ============ 2. BIRTHDAY REVEAL ============ -->
+  <section class="section" id="reveal" hidden>
+    <div class="wrap wrap--center">
+      <p class="kicker reveal-lines" data-txt="revealLine1"></p>
+      <p class="reveal-lines reveal-lines--soft" data-txt="revealLine2"></p>
+      <p class="reveal-lines reveal-lines--big" data-txt="revealLine3"></p>
+
+      <!-- gojo-eyes.jpg — framed card (eyes run edge-to-edge, so no cut-out) -->
+      <figure class="eyes-frame" id="eyesFrame">
+        <img id="eyesImg" class="eyes-img" src="public/images/gojo-eyes.jpg"
+             alt="Close-up of Gojo's glowing blue eyes" width="736" height="1306"
+             decoding="async" />
+      </figure>
+
+      <p class="reveal-lead" data-txt="revealLine4"></p>
+      <div class="big-reveal" id="bigReveal">
+        <div class="big-date" data-txt="realDate"></div>
+      </div>
+
+      <div class="section-actions">
+        <button class="btn btn--primary" id="revealBtn" type="button" data-scroll="#gojo" data-txt="revealBtn"></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 3. GOJO VISUAL ============ -->
+  <section class="section" id="gojo" hidden>
+    <div class="wrap wrap--center">
+      <h2 class="title" data-txt="gojoTitle"></h2>
+      <p class="lede lede--tight" data-txt="gojoSub"></p>
+
+      <figure class="gojo-figure">
+        <span class="gojo-aura" aria-hidden="true"></span>
+        <span class="gojo-particles" id="gojoParticles" aria-hidden="true"></span>
+        <img class="gojo-main" src="public/images/gojo-main.jpg"
+             alt="Gojo Satoru with white hair and a black outfit against a blue sky"
+             width="724" height="1287"
+             decoding="async" />
+      </figure>
+
+      <div class="section-actions">
+        <button class="btn btn--primary" id="gojoBtn" type="button" data-scroll="#message" data-txt="gojoBtn"></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 4. FINAL BIRTHDAY MESSAGE ============ -->
+  <section class="section" id="message" hidden>
+    <div class="wrap wrap--center">
+      <h2 class="title title--xl message-heading" data-txt="messageTitle"></h2>
+
+      <!-- gojo-smile.jpg — above the message on mobile, sits at the side on wide screens -->
+      <img class="gojo-smile" src="public/images/gojo-smile.jpg"
+           alt="Gojo smiling with his blue eye visible"
+           width="736" height="1308"
+           decoding="async" />
+
+      <article class="message" id="finalMessage"></article>
+
+      <!-- closing -->
+      <div class="closing">
+        <p class="closing__line" data-txt="closingLine"></p>
+        <button class="btn btn--ghost" id="replayBtn" type="button" data-txt="replayBtn"></button>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<canvas id="confetti" aria-hidden="true"></canvas>
+
+<script src="script.js"></script>
+</body>
+</html>
