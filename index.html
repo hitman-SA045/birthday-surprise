@@ -40,13 +40,6 @@
       <p class="reveal-lines reveal-lines--soft" data-txt="revealLine2"></p>
       <p class="reveal-lines reveal-lines--big" data-txt="revealLine3"></p>
 
-      <!-- gojo-eyes.jpg — framed card (eyes run edge-to-edge, so no cut-out) -->
-      <figure class="eyes-frame" id="eyesFrame">
-        <img id="eyesImg" class="eyes-img" src="public/images/gojo-eyes.jpg"
-             alt="Close-up of Gojo's glowing blue eyes" width="736" height="1306"
-             decoding="async" />
-      </figure>
-
       <p class="reveal-lead" data-txt="revealLine4"></p>
       <div class="big-reveal" id="bigReveal">
         <div class="big-date" data-txt="realDate"></div>
@@ -64,14 +57,11 @@
       <h2 class="title" data-txt="gojoTitle"></h2>
       <p class="lede lede--tight" data-txt="gojoSub"></p>
 
-      <figure class="gojo-figure">
-        <span class="gojo-aura" aria-hidden="true"></span>
-        <span class="gojo-particles" id="gojoParticles" aria-hidden="true"></span>
-        <img class="gojo-main" src="public/images/gojo-main.jpg"
-             alt="Gojo Satoru with white hair and a black outfit against a blue sky"
-             width="724" height="1287"
-             decoding="async" />
-      </figure>
+      <!-- ambient glow + particles layered over this section's Gojo background -->
+      <div class="gojo-figure" aria-hidden="true">
+        <span class="gojo-aura"></span>
+        <span class="gojo-particles" id="gojoParticles"></span>
+      </div>
 
       <div class="section-actions">
         <button class="btn btn--primary" id="gojoBtn" type="button" data-scroll="#message" data-txt="gojoBtn"></button>
@@ -83,12 +73,6 @@
   <section class="section" id="message" hidden>
     <div class="wrap wrap--center">
       <h2 class="title title--xl message-heading" data-txt="messageTitle"></h2>
-
-      <!-- gojo-smile.jpg — above the message on mobile, sits at the side on wide screens -->
-      <img class="gojo-smile" src="public/images/gojo-smile.jpg"
-           alt="Gojo smiling with his blue eye visible"
-           width="736" height="1308"
-           decoding="async" />
 
       <article class="message" id="finalMessage"></article>
 

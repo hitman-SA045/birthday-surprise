@@ -26,8 +26,8 @@ const CONFIG = {
     revealBtn: "Okay, continue 👉",
 
     /* 3. Gojo visual */
-    gojoTitle: "Special Grade Birthday Girl 👁️💙",
-    gojoSub: "A little birthday surprise for the LIAR. 😂",
+    gojoTitle: "Special Grade LIAR 👁️💙",
+    gojoSub: "A little message for the LIAR. 😂",
     gojoBtn: "Show me the message 💌",
 
     /* 4. Final message */
@@ -43,8 +43,8 @@ const CONFIG = {
     ],
 
     /* Closing */
-    closingLine: "Happy Birthday, Divya dharshini.    i think i spelled your name correctly, am I",
-    replayBtn: "Replay the Surprise ↻",
+    closingLine: "Happy Birthday, Divya dharshini.    i think i spelled your name correctly, am I?",
+    replayBtn: "Replay",
   },
 };
 
@@ -227,13 +227,13 @@ const CONFIG = {
     window.scrollTo({ top: top, behavior: reduced ? "auto" : "smooth" });
   }
 
-  /* briefly intensify the eyes glow when the real date lands */
-  function pulseEyes() {
-    var frame = $("#eyesFrame");
-    if (!frame) return;
-    frame.classList.add("is-pulsing");
+  /* briefly intensify the reveal section's glow when the real date lands */
+  function pulseReveal() {
+    var section = $("#reveal");
+    if (!section) return;
+    section.classList.add("is-pulsing");
     setTimeout(function () {
-      frame.classList.remove("is-pulsing");
+      section.classList.remove("is-pulsing");
     }, 1800);
   }
 
@@ -249,9 +249,9 @@ const CONFIG = {
 
       // the date lands after the scroll settles
       setTimeout(function () {
-        var big = $("#bigReveal");
+        var big = $(".big-date");
         if (big) big.classList.add("is-on");
-        pulseEyes();
+        pulseReveal();
         fireConfetti(120, 2300);
       }, reduced ? 0 : 700);
     }, reduced ? 0 : 260);
@@ -280,11 +280,11 @@ const CONFIG = {
       openBtn.classList.remove("is-done");
     }
 
-    var big = $("#bigReveal");
+    var big = $(".big-date");
     if (big) big.classList.remove("is-on");
 
-    var frame = $("#eyesFrame");
-    if (frame) frame.classList.remove("is-pulsing");
+    var revealSection = $("#reveal");
+    if (revealSection) revealSection.classList.remove("is-pulsing");
 
     window.scrollTo({ top: 0, behavior: reduced ? "auto" : "smooth" });
   }

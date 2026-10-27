@@ -152,6 +152,7 @@ img { max-width: 100%; }
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: clamp(16px, 3vw, 28px);
   padding-inline: 18px;
 }
 
@@ -166,6 +167,179 @@ img { max-width: 100%; }
   align-items: center;
   min-height: 100svh;
   padding-block: clamp(40px, 8vw, 72px);
+}
+
+/* =========================================================
+   Immersive Gojo backgrounds
+   Each image fills its section; a navy gradient keeps the
+   foreground copy readable without hiding the artwork.
+   ========================================================= */
+#opening,
+#reveal,
+#gojo,
+#message {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border-radius: clamp(20px, 2.4vw, 28px);
+  border: 1px solid rgba(141, 216, 255, 0.20);
+  background-color: #040a16;
+  background-repeat: no-repeat;
+  background-size: cover;
+  box-shadow:
+    0 26px 70px rgba(0, 0, 0, 0.55),
+    0 0 46px rgba(79, 195, 255, 0.12);
+}
+
+#opening::before,
+#reveal::before,
+#gojo::before,
+#message::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+#opening > .wrap,
+#reveal > .wrap,
+#gojo > .wrap,
+#message > .wrap {
+  position: relative;
+  z-index: 1;
+  text-shadow: 0 1px 12px rgba(0, 3, 8, 0.85);
+}
+
+/* soft local scrims: the pictures stay visible above/around the copy */
+#reveal > .wrap::before,
+#gojo > .wrap::before {
+  content: "";
+  position: absolute;
+  inset: -16px 0;
+  z-index: -1;
+  border-radius: 28px;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center,
+    rgba(1, 5, 14, 0.72) 0%,
+    rgba(1, 5, 14, 0.46) 64%,
+    rgba(1, 5, 14, 0) 100%);
+}
+
+#gojo > .wrap::before {
+  background: radial-gradient(ellipse at center,
+    rgba(1, 5, 14, 0.62) 0%,
+    rgba(1, 5, 14, 0.30) 68%,
+    rgba(1, 5, 14, 0) 100%);
+}
+
+/* 1. Opening — Gojo's eyes */
+#opening {
+  align-items: flex-end;
+  background-image: url("public/images/gojo-eyes.jpg");
+  background-position: center 58%;
+}
+
+#opening::before {
+  background:
+    radial-gradient(72% 42% at 50% 44%, rgba(79, 195, 255, 0.12), transparent 72%),
+    linear-gradient(180deg,
+      rgba(0, 3, 8, 0.86) 0%,
+      rgba(3, 11, 26, 0.56) 18%,
+      rgba(3, 11, 26, 0.34) 42%,
+      rgba(3, 11, 26, 0.46) 58%,
+      rgba(2, 8, 20, 0.82) 74%,
+      rgba(0, 3, 8, 0.97) 100%);
+}
+
+/* 2. Birthday reveal — main Gojo artwork */
+#reveal {
+  background-image: url("public/images/gojo-main.jpg");
+  background-position: center 58%;
+  transition: border-color 700ms var(--ease), box-shadow 700ms var(--ease);
+}
+
+#reveal:not([hidden]) {
+  display: flex;
+  align-items: flex-end;
+  min-height: 100svh;
+}
+
+#reveal::before {
+  background:
+    radial-gradient(90% 60% at 50% 104%, rgba(27, 111, 184, 0.30), transparent 62%),
+    radial-gradient(120% 100% at 50% 46%, transparent 48%, rgba(0, 3, 8, 0.44) 100%),
+    linear-gradient(180deg,
+      rgba(0, 3, 8, 0.58) 0%,
+      rgba(2, 8, 20, 0.20) 20%,
+      rgba(2, 8, 20, 0.22) 42%,
+      rgba(2, 8, 20, 0.58) 62%,
+      rgba(1, 5, 14, 0.90) 82%,
+      rgba(0, 3, 8, 0.98) 100%);
+}
+
+/* brief intensify when the real date lands */
+#reveal.is-pulsing {
+  border-color: rgba(141, 216, 255, 0.75);
+  box-shadow:
+    0 0 46px rgba(79, 195, 255, 0.68),
+    0 0 110px rgba(79, 195, 255, 0.34),
+    inset 0 0 80px rgba(79, 195, 255, 0.16);
+}
+
+/* 3. Gojo visual — the main artwork again, framed as a full scene */
+#gojo {
+  background-image: url("public/images/gojo-main.jpg");
+  background-position: center 30%;
+}
+
+#gojo:not([hidden]) {
+  display: flex;
+  align-items: flex-end;
+  min-height: 86svh;
+}
+
+#gojo::before {
+  background:
+    radial-gradient(70% 55% at 50% 108%, rgba(160, 107, 255, 0.18), transparent 66%),
+    radial-gradient(110% 90% at 50% 48%, transparent 50%, rgba(0, 3, 8, 0.40) 100%),
+    linear-gradient(180deg,
+      rgba(0, 3, 8, 0.30) 0%,
+      rgba(2, 8, 20, 0.12) 26%,
+      rgba(2, 8, 20, 0.26) 55%,
+      rgba(1, 5, 14, 0.80) 82%,
+      rgba(0, 3, 8, 0.96) 100%);
+}
+
+#gojo .title,
+#gojo .lede,
+#gojo .section-actions {
+  position: relative;
+  z-index: 1;
+}
+
+/* 4. Final message — Gojo's smile */
+#message {
+  background-image: url("public/images/gojo-smile.jpg");
+  background-position: center 34%;
+}
+
+#message:not([hidden]) {
+  display: flex;
+  align-items: center;
+  min-height: 100svh;
+}
+
+#message::before {
+  background:
+    radial-gradient(80% 60% at 50% 105%, rgba(27, 111, 184, 0.26), transparent 64%),
+    linear-gradient(180deg,
+      rgba(0, 3, 8, 0.66) 0%,
+      rgba(2, 8, 20, 0.34) 16%,
+      rgba(2, 8, 20, 0.36) 36%,
+      rgba(2, 8, 20, 0.52) 60%,
+      rgba(1, 5, 14, 0.82) 86%,
+      rgba(0, 3, 8, 0.94) 100%);
 }
 
 .wrap {
@@ -203,7 +377,7 @@ img { max-width: 100%; }
   letter-spacing: -0.015em;
   margin: 0;
   color: #fff;
-  text-shadow: 0 0 34px rgba(79, 195, 255, 0.45);
+  text-shadow: 0 2px 20px rgba(0, 3, 8, 0.92), 0 0 34px rgba(79, 195, 255, 0.45);
   text-wrap: balance;
   overflow-wrap: break-word;
 }
@@ -216,7 +390,7 @@ img { max-width: 100%; }
   letter-spacing: -0.01em;
   margin: 0;
   color: #fff;
-  text-shadow: 0 0 30px rgba(79, 195, 255, 0.32);
+  text-shadow: 0 2px 18px rgba(0, 3, 8, 0.9), 0 0 30px rgba(79, 195, 255, 0.32);
   text-wrap: balance;
 }
 
@@ -225,8 +399,23 @@ img { max-width: 100%; }
 }
 
 .message-heading {
+  position: relative;
+  z-index: 1;
   color: var(--blue-bright);
-  text-shadow: 0 0 38px rgba(79, 195, 255, 0.5);
+  text-shadow: 0 2px 20px rgba(0, 3, 8, 0.92), 0 0 38px rgba(79, 195, 255, 0.5);
+}
+
+.message-heading::before {
+  content: "";
+  position: absolute;
+  inset: -10px 0;
+  z-index: -1;
+  border-radius: 24px;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center,
+    rgba(1, 5, 14, 0.68) 0%,
+    rgba(1, 5, 14, 0.34) 68%,
+    rgba(1, 5, 14, 0) 100%);
 }
 
 .lede {
@@ -267,7 +456,7 @@ img { max-width: 100%; }
 .reveal-lines--big {
   color: var(--blue-bright);
   font-weight: 700;
-  text-shadow: 0 0 30px rgba(79, 195, 255, 0.4);
+  text-shadow: 0 2px 16px rgba(0, 3, 8, 0.92), 0 0 30px rgba(79, 195, 255, 0.4);
 }
 
 .reveal-lead {
@@ -276,37 +465,6 @@ img { max-width: 100%; }
   font-size: clamp(1.05rem, 4.8vw, 1.35rem);
   font-weight: 600;
   color: var(--text-dim);
-}
-
-/* framed eyes image — shown compactly, never distorted */
-.eyes-frame {
-  position: relative;
-  display: block;
-  width: min(78%, 300px);
-  margin: 4px 0;
-  padding: 10px;
-  border-radius: var(--radius);
-  background: linear-gradient(180deg, rgba(79, 195, 255, 0.10), rgba(10, 16, 32, 0.72));
-  border: 1px solid rgba(141, 216, 255, 0.28);
-  box-shadow: var(--glow), inset 0 0 40px rgba(79, 195, 255, 0.07);
-  overflow: hidden;
-  transition: box-shadow 700ms var(--ease), border-color 700ms var(--ease);
-}
-
-.eyes-img {
-  display: block;
-  width: 100%;
-  height: auto;
-  border-radius: calc(var(--radius) - 8px);
-}
-
-/* brief intensify when the real date lands */
-.eyes-frame.is-pulsing {
-  border-color: rgba(141, 216, 255, 0.75);
-  box-shadow:
-    0 0 46px rgba(79, 195, 255, 0.75),
-    0 0 110px rgba(79, 195, 255, 0.4),
-    inset 0 0 60px rgba(79, 195, 255, 0.2);
 }
 
 /* the date itself */
@@ -333,7 +491,7 @@ img { max-width: 100%; }
   filter: blur(6px);
   transition: opacity 800ms var(--ease), transform 800ms var(--ease), filter 800ms var(--ease);
   box-shadow: var(--glow-strong);
-  text-shadow: 0 0 34px rgba(79, 195, 255, 0.6);
+  text-shadow: 0 2px 16px rgba(0, 3, 8, 0.9), 0 0 34px rgba(79, 195, 255, 0.6);
   max-width: 100%;
   overflow-wrap: break-word;
 }
@@ -354,14 +512,12 @@ img { max-width: 100%; }
    Gojo visual
    ========================================================= */
 .gojo-figure {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  max-width: 100%;
-  margin: 6px 0 0;
-  isolation: isolate;
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  margin: 0;
   overflow: hidden;
+  pointer-events: none;
 }
 
 /* soft blue aura behind the portrait */
@@ -382,17 +538,6 @@ img { max-width: 100%; }
 @keyframes auraPulse {
   0%, 100% { opacity: 0.75; transform: translate(-50%, -50%) scale(0.94); }
   50%      { opacity: 1;    transform: translate(-50%, -50%) scale(1); }
-}
-
-.gojo-main {
-  position: relative;
-  z-index: 1;
-  display: block;
-  width: min(100%, 340px);
-  height: auto;
-  border-radius: var(--radius);
-  border: 1px solid rgba(141, 216, 255, 0.26);
-  box-shadow: 0 0 50px rgba(79, 195, 255, 0.28), 0 18px 60px rgba(0, 0, 0, 0.6);
 }
 
 /* gentle floating particles */
@@ -423,16 +568,6 @@ img { max-width: 100%; }
 /* =========================================================
    Final birthday message
    ========================================================= */
-.gojo-smile {
-  display: block;
-  width: min(64%, 260px);
-  height: auto;
-  margin: 2px auto 6px;
-  border-radius: var(--radius);
-  border: 1px solid rgba(141, 216, 255, 0.26);
-  box-shadow: 0 0 40px rgba(79, 195, 255, 0.3), 0 14px 46px rgba(0, 0, 0, 0.55);
-}
-
 .message {
   width: 100%;
   max-width: 62ch;
@@ -441,7 +576,10 @@ img { max-width: 100%; }
   gap: 18px;
   padding: clamp(22px, 5.5vw, 34px) clamp(18px, 4.6vw, 30px);
   border-radius: var(--radius);
-  background: linear-gradient(180deg, rgba(79, 195, 255, 0.08), rgba(10, 16, 32, 0.72));
+  background: linear-gradient(180deg,
+    rgba(8, 18, 38, 0.52),
+    rgba(7, 15, 32, 0.68) 55%,
+    rgba(5, 11, 25, 0.82));
   border: 1px solid rgba(141, 216, 255, 0.24);
   box-shadow: var(--glow-strong), inset 0 0 60px rgba(79, 195, 255, 0.05);
   text-align: left;
@@ -451,9 +589,10 @@ img { max-width: 100%; }
   margin: 0;
   font-size: clamp(1rem, 4.4vw, 1.12rem);
   line-height: 1.78;
-  color: var(--text-dim);
+  color: #dcecff;
   text-wrap: pretty;
   overflow-wrap: break-word;
+  text-shadow: 0 1px 10px rgba(0, 3, 8, 0.95), 0 0 16px rgba(0, 3, 8, 0.8);
 }
 
 .message__sign {
@@ -463,7 +602,7 @@ img { max-width: 100%; }
 }
 
 .message__sign-a {
-  color: var(--text-faint) !important;
+  color: var(--text-dim) !important;
   font-size: 0.95rem !important;
 }
 
@@ -472,7 +611,7 @@ img { max-width: 100%; }
   font-weight: 600;
   color: var(--blue-bright) !important;
   font-size: clamp(1.02rem, 4.6vw, 1.2rem) !important;
-  text-shadow: 0 0 26px rgba(79, 195, 255, 0.45);
+  text-shadow: 0 2px 14px rgba(0, 3, 8, 0.9), 0 0 26px rgba(79, 195, 255, 0.45);
   margin-top: 6px !important;
 }
 
@@ -494,7 +633,7 @@ img { max-width: 100%; }
   font-size: clamp(1rem, 4.4vw, 1.28rem);
   font-weight: 600;
   color: #fff;
-  text-shadow: 0 0 28px rgba(79, 195, 255, 0.4);
+  text-shadow: 0 2px 16px rgba(0, 3, 8, 0.92), 0 0 28px rgba(79, 195, 255, 0.4);
   text-wrap: balance;
   max-width: 40ch;
 }
@@ -608,6 +747,33 @@ img { max-width: 100%; }
 @media (max-height: 480px) and (orientation: landscape) {
   .section--hero { min-height: 0; }
   .section { padding-block: 40px; }
+
+  #opening,
+  #reveal:not([hidden]),
+  #gojo:not([hidden]),
+  #message:not([hidden]) { min-height: 0; }
+
+  #opening { background-position: center 42%; }
+  #reveal { background-position: center 10%; }
+  #gojo { background-position: center 12%; }
+  #message { background-position: center 8%; }
+}
+
+/* =========================================================
+   Smaller screens
+   ========================================================= */
+@media (max-width: 620px) {
+  #opening,
+  #reveal,
+  #gojo,
+  #message { border-radius: 20px; }
+
+  #opening { background-position: center 52%; }
+  #reveal { background-position: center 46%; }
+  #gojo { background-position: center 28%; }
+  #message { background-position: center 24%; }
+
+  #gojo:not([hidden]) { min-height: 78svh; }
 }
 
 /* =========================================================
@@ -617,23 +783,27 @@ img { max-width: 100%; }
   .stage { padding-inline: 40px; }
   .section { max-width: 780px; }
 
-  /* on wide screens the smile image sits beside the message */
+  #opening { background-position: center 62%; }
+  #reveal { background-position: center 58%; }
+  #gojo { background-position: center 28%; }
+  #message { background-position: center 30%; }
+
+  /* the message sits beside the visible half of Gojo's smile */
   #message .wrap {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(220px, 280px);
+    grid-template-columns: minmax(0, 1fr) minmax(190px, 250px);
     grid-template-areas:
       "heading  heading"
-      "message  smile"
-      "closing  smile";
+      "message  ."
+      "closing  .";
     align-items: start;
-    column-gap: 30px;
+    column-gap: clamp(20px, 3vw, 32px);
     row-gap: 20px;
     text-align: left;
   }
 
   #message .message-heading { grid-area: heading; text-align: center; }
   #message .message         { grid-area: message; }
-  #message .gojo-smile      { grid-area: smile; width: 100%; margin: 0; position: sticky; top: 40px; }
   #message .closing         { grid-area: closing; align-items: flex-start; }
   #message .closing__line   { text-align: left; }
 }
