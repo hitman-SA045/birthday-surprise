@@ -153,8 +153,7 @@ img { max-width: 100%; }
   flex-direction: column;
   align-items: center;
   gap: clamp(16px, 3vw, 28px);
-  padding-left: max(18px, env(safe-area-inset-left));
-  padding-right: max(18px, env(safe-area-inset-right));
+  padding-inline: 18px;
 }
 
 .section {
@@ -222,15 +221,15 @@ img { max-width: 100%; }
   border-radius: 28px;
   pointer-events: none;
   background: radial-gradient(ellipse at center,
-    rgba(1, 5, 14, 0.76) 0%,
-    rgba(1, 5, 14, 0.52) 64%,
+    rgba(1, 5, 14, 0.72) 0%,
+    rgba(1, 5, 14, 0.46) 64%,
     rgba(1, 5, 14, 0) 100%);
 }
 
 #gojo > .wrap::before {
   background: radial-gradient(ellipse at center,
-    rgba(1, 5, 14, 0.66) 0%,
-    rgba(1, 5, 14, 0.34) 68%,
+    rgba(1, 5, 14, 0.62) 0%,
+    rgba(1, 5, 14, 0.30) 68%,
     rgba(1, 5, 14, 0) 100%);
 }
 
@@ -322,10 +321,7 @@ img { max-width: 100%; }
 /* 4. Final message — Gojo's smile */
 #message {
   background-image: url("public/images/gojo-smile.jpg");
-  /* keep more of the portrait in view on narrow screens instead of
-     magnifying it until the face is cropped */
-  background-size: auto 80%;
-  background-position: 82% top;
+  background-position: center 34%;
 }
 
 #message:not([hidden]) {
@@ -344,22 +340,6 @@ img { max-width: 100%; }
       rgba(2, 8, 20, 0.52) 60%,
       rgba(1, 5, 14, 0.82) 86%,
       rgba(0, 3, 8, 0.94) 100%);
-}
-
-/* fade the bottom of the portrait into the section background */
-#message::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 30%;
-  z-index: 0;
-  pointer-events: none;
-  background: linear-gradient(180deg,
-    rgba(4, 10, 22, 0) 0%,
-    rgba(4, 10, 22, 0.72) 58%,
-    #040a16 100%);
 }
 
 .wrap {
@@ -412,7 +392,6 @@ img { max-width: 100%; }
   color: #fff;
   text-shadow: 0 2px 18px rgba(0, 3, 8, 0.9), 0 0 30px rgba(79, 195, 255, 0.32);
   text-wrap: balance;
-  overflow-wrap: break-word;
 }
 
 .title--xl {
@@ -446,7 +425,6 @@ img { max-width: 100%; }
   color: var(--text-dim);
   max-width: 46ch;
   text-wrap: pretty;
-  overflow-wrap: break-word;
 }
 
 .lede--tight { margin-top: -4px; }
@@ -458,7 +436,6 @@ img { max-width: 100%; }
   color: var(--blue);
   letter-spacing: 0.01em;
   margin: 0;
-  overflow-wrap: break-word;
 }
 
 /* =========================================================
@@ -472,7 +449,6 @@ img { max-width: 100%; }
   line-height: 1.35;
   color: var(--text);
   text-wrap: balance;
-  overflow-wrap: break-word;
 }
 
 .reveal-lines--soft { color: var(--text-dim); font-weight: 500; }
@@ -659,7 +635,6 @@ img { max-width: 100%; }
   color: #fff;
   text-shadow: 0 2px 16px rgba(0, 3, 8, 0.92), 0 0 28px rgba(79, 195, 255, 0.4);
   text-wrap: balance;
-  overflow-wrap: break-word;
   max-width: 40ch;
 }
 
@@ -686,7 +661,6 @@ img { max-width: 100%; }
   letter-spacing: 0.01em;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
-  touch-action: manipulation;
   transition: transform 220ms var(--ease), box-shadow 300ms var(--ease),
               background-color 300ms var(--ease), border-color 300ms var(--ease);
   max-width: 100%;
@@ -768,116 +742,6 @@ img { max-width: 100%; }
 }
 
 /* =========================================================
-   Mobile and tablet
-   Keep sections content-sized and centred so phones do not
-   get full-screen panels with the copy stranded at one edge.
-   ========================================================= */
-@media (max-width: 899px) {
-  .stage { gap: 14px; }
-
-  .section {
-    padding-block: clamp(32px, 7vw, 56px);
-  }
-
-  #opening {
-    align-items: center;
-    min-height: 100svh;
-    padding-block: clamp(32px, 8vw, 64px);
-    background-position: center 52%;
-  }
-
-  #reveal:not([hidden]) {
-    align-items: center;
-    min-height: clamp(420px, 68svh, 680px);
-    background-position: center 46%;
-  }
-
-  #gojo:not([hidden]) {
-    align-items: center;
-    min-height: clamp(340px, 58svh, 560px);
-    background-position: center 28%;
-  }
-
-  #message:not([hidden]) {
-    align-items: center;
-    min-height: 0;
-  }
-
-  .wrap { gap: 16px; }
-
-  /* centred copy sits over brighter parts of the artwork */
-  #opening > .wrap::before {
-    content: "";
-    position: absolute;
-    inset: -28px 0;
-    z-index: -1;
-    border-radius: 28px;
-    pointer-events: none;
-    background: linear-gradient(180deg,
-      rgba(1, 5, 14, 0) 0%,
-      rgba(1, 5, 14, 0.58) 18%,
-      rgba(1, 5, 14, 0.74) 52%,
-      rgba(1, 5, 14, 0.58) 82%,
-      rgba(1, 5, 14, 0) 100%);
-  }
-
-  #reveal > .wrap::before {
-    background:
-      linear-gradient(180deg,
-        rgba(1, 5, 14, 0.40) 0%,
-        rgba(1, 5, 14, 0.36) 100%),
-      radial-gradient(ellipse at center,
-        rgba(1, 5, 14, 0.72) 0%,
-        rgba(1, 5, 14, 0.48) 64%,
-        rgba(1, 5, 14, 0) 100%);
-  }
-
-  #gojo > .wrap::before {
-    background: radial-gradient(ellipse at center,
-      rgba(1, 5, 14, 0.72) 0%,
-      rgba(1, 5, 14, 0.44) 68%,
-      rgba(1, 5, 14, 0) 100%);
-  }
-
-  /* keep the decorative aura from washing out the copy */
-  #gojo > .wrap::after {
-    content: "";
-    position: absolute;
-    inset: -18px 0;
-    z-index: 0;
-    border-radius: 28px;
-    pointer-events: none;
-    background: radial-gradient(ellipse at center,
-      rgba(1, 5, 14, 0.52) 0%,
-      rgba(1, 5, 14, 0.30) 62%,
-      rgba(1, 5, 14, 0) 100%);
-  }
-
-  .message {
-    gap: 16px;
-    padding: clamp(20px, 5vw, 28px) clamp(16px, 4.4vw, 24px);
-  }
-
-  .closing {
-    margin-top: 18px;
-    gap: 14px;
-  }
-
-  .big-date { padding: 16px 20px; }
-
-  .btn--ghost { min-height: 48px; }
-}
-
-/* On wider phones and tablets a face-safe cover crop keeps the
-   artwork full-bleed instead of leaving empty side bands. */
-@media (min-width: 461px) {
-  #message {
-    background-size: cover;
-    background-position: 55% 42%;
-  }
-}
-
-/* =========================================================
    Landscape phones
    ========================================================= */
 @media (max-height: 480px) and (orientation: landscape) {
@@ -892,30 +756,37 @@ img { max-width: 100%; }
   #opening { background-position: center 42%; }
   #reveal { background-position: center 10%; }
   #gojo { background-position: center 12%; }
-  #message {
-    background-size: cover;
-    background-position: center 42%;
-  }
+  #message { background-position: center 8%; }
+}
+
+/* =========================================================
+   Smaller screens
+   ========================================================= */
+@media (max-width: 620px) {
+  #opening,
+  #reveal,
+  #gojo,
+  #message { border-radius: 20px; }
+
+  #opening { background-position: center 52%; }
+  #reveal { background-position: center 46%; }
+  #gojo { background-position: center 28%; }
+  #message { background-position: center 24%; }
+
+  #gojo:not([hidden]) { min-height: 78svh; }
 }
 
 /* =========================================================
    Larger screens
    ========================================================= */
 @media (min-width: 900px) {
-  .stage {
-    padding-left: max(40px, env(safe-area-inset-left));
-    padding-right: max(40px, env(safe-area-inset-right));
-  }
+  .stage { padding-inline: 40px; }
   .section { max-width: 780px; }
 
   #opening { background-position: center 62%; }
   #reveal { background-position: center 58%; }
   #gojo { background-position: center 28%; }
-
-  #message {
-    background-size: cover;
-    background-position: center 30%;
-  }
+  #message { background-position: center 30%; }
 }
 
 /* =========================================================
