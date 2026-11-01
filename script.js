@@ -9,7 +9,7 @@ const CONFIG = {
   /* ---- her name + the two dates ---- */
   herName: "Divya dharshini",
   fakeDate: "November 27",
-  realDate: "09 • 11 • 2026 🎂💙",
+  realDate: "09 • 11 • 2007 🎂💙",
   /* ---------------------------------- */
 
   text: {
@@ -28,7 +28,7 @@ const CONFIG = {
     /* 3. Gojo visual */
     gojoTitle: "Special Grade LIAR 👁️💙",
     gojoSub: "A little message for the LIAR. 😂",
-    gojoBtn: "Show me the message 💌",
+    gojoBtn: "Show me the message",
 
     /* 4. Final message */
     messageTitle: "Happy Birthdayyy Dumbhead! 🎂💙",
@@ -39,7 +39,7 @@ const CONFIG = {
     ],
     messageSignOff: [
       "With dumbness,",
-      "Your Dumbhead Companion and as well as Your Ideal Lover 😂💙",
+      "Your Dumbhead Companion and as well as Your Ideal Lover 😂",
     ],
 
     /* Closing */

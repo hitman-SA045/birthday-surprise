@@ -787,25 +787,6 @@ img { max-width: 100%; }
   #reveal { background-position: center 58%; }
   #gojo { background-position: center 28%; }
   #message { background-position: center 30%; }
-
-  /* the message sits beside the visible half of Gojo's smile */
-  #message .wrap {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(190px, 250px);
-    grid-template-areas:
-      "heading  heading"
-      "message  ."
-      "closing  .";
-    align-items: start;
-    column-gap: clamp(20px, 3vw, 32px);
-    row-gap: 20px;
-    text-align: left;
-  }
-
-  #message .message-heading { grid-area: heading; text-align: center; }
-  #message .message         { grid-area: message; }
-  #message .closing         { grid-area: closing; align-items: flex-start; }
-  #message .closing__line   { text-align: left; }
 }
 
 /* =========================================================
