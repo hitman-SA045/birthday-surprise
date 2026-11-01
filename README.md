@@ -71,14 +71,16 @@ Notes:
 
 ## The three images
 
-All three are used exactly as supplied. They are painted as `cover` backgrounds (cropped to
-the section, never stretched) with a navy scrim and per-section positioning.
+All three are used exactly as supplied. They are never stretched: the opening, reveal and
+Gojo visual use `cover` backgrounds, while the final message uses a face-safe responsive
+crop (a portrait-height fit on phones, a cover crop on wider screens), all with a navy scrim
+and per-section positioning.
 
 | Image | Where | Treatment |
 | --- | --- | --- |
-| `gojo-eyes.jpg` | Opening | Cover background; the eye band is kept in the clear upper area while the copy sits below |
-| `gojo-main.jpg` | Birthday reveal + Gojo visual | Cover background with two different crops; the reveal date lands over the darker lower area |
-| `gojo-smile.jpg` | Final message | Cover background behind the translucent message card; the face stays visible above and, on wide screens, beside the copy |
+| `gojo-eyes.jpg` | Opening | Cover background; the copy is centred over the eye band on phones and sits lower on desktop |
+| `gojo-main.jpg` | Birthday reveal + Gojo visual | Cover background with two different crops; the face stays in view behind the centred mobile copy |
+| `gojo-smile.jpg` | Final message | Face-safe background: portrait-height fit on phones, cover crop on wider screens; the face stays visible behind the translucent message card |
 
 `gojo-eyes.jpg` has a large pure-white background, so the navy gradient overlay tames the
 white areas while keeping the glowing eye band readable. The reveal's glow pulse now targets
@@ -90,11 +92,13 @@ images need no `width`/`height` markup.
 
 ## Responsive behaviour
 
-- Mobile-first; verified with no horizontal overflow at 320, 360, 375, 390, 412, 768,
-  1024 and 1440 px.
+- Mobile-first; verified with no horizontal overflow at 320, 360, 375, 390, 430, 461,
+  500, 620, 621, 768, 899, 900, 1024 and 1440 px, plus 740 × 360 landscape.
 - Type scales with `clamp()`, so headings never clip or become oversized.
-- On screens ≥900px the final message becomes a two-column grid with the smile image
-  sticky beside the text; on phones the image sits above the message.
+- Below 900px the sections centre their copy, use content-sized minimum heights and
+  tighter spacing; the final message stays a single centred card on every screen size.
+- The final message portrait is fitted on phones and uses a face-safe cover crop on wider
+  screens, so Gojo's face stays visible without hard letterboxing.
 - All buttons are ≥44px tall. The layout is keyboard-navigable and Enter activates both
   the opening and replay buttons.
 
@@ -102,8 +106,8 @@ images need no `width`/`height` markup.
 
 - `prefers-reduced-motion: reduce` disables the ambient drift, particles, confetti and the
   section entrance animation, and shows the date immediately.
-- All three images have descriptive `alt` text.
-- Each image carries `width`/`height` plus `decoding="async"` so it cannot cause layout shift.
+- The three Gojo images are decorative CSS backgrounds, so they are hidden from assistive
+  tech; the page copy carries the meaning.
 - The ambient background is `aria-hidden` and the confetti canvas is non-interactive.
 
 ## Colours
