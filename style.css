@@ -787,6 +787,25 @@ img { max-width: 100%; }
   #reveal { background-position: center 58%; }
   #gojo { background-position: center 28%; }
   #message { background-position: center 30%; }
+
+  /* the message sits beside the visible half of Gojo's smile */
+  #message .wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+#message .message-heading,
+#message .message,
+#message .closing,
+#message .closing__line {
+    text-align: center;
+}
+
+#message .closing {
+    align-items: center;
+}
 }
 
 /* =========================================================
