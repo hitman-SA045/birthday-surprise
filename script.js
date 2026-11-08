@@ -14,9 +14,9 @@ const CONFIG = {
 
   text: {
     /* 1. Opening */
-    openTitle: "Hey, Dumbhead 👀💙",
-    openLede: "I made a little something for you.",
-    openBtn: "Open Your Surprise 🎁",
+    openTitle: "Hey, Dumbhead 👀",
+    openLede: "I owe you one.",
+    openBtn: "Open 🎁",
 
     /* 2. Birthday reveal */
     revealLine1: "First of all... 👀",
@@ -26,9 +26,9 @@ const CONFIG = {
     revealBtn: "Okay, continue 👉",
 
     /* 3. Gojo visual */
-    gojoTitle: "Special Grade LIAR 👁️💙",
+    gojoTitle: "Special Grade LIAR 🙊💙",
     gojoSub: "A little message for the LIAR. 😂",
-    gojoBtn: "Show me the message",
+    gojoBtn: "Show the message",
 
     /* 4. Final message */
     messageTitle: "Happy Birthdayyy Dumbhead! 🎂💙",
@@ -39,7 +39,7 @@ const CONFIG = {
     ],
     messageSignOff: [
       "With dumbness,",
-      "Your Dumbhead Companion and as well as Your Ideal Lover 😂",
+      "Your DUMBHEAD Companion and as well as Your Ideal Lover 😂",
     ],
 
     /* Closing */
